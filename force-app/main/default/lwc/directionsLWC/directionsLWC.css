@@ -1,0 +1,35 @@
+.container {
+    width: 100%;
+    max-width: 500px;
+    margin: auto;
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+.container .lightning-input {
+    margin-bottom: 10px;
+}
+
+.container ul.slds-has-dividers_around-space {
+    margin: 10px 0;
+    padding: 10px;
+    background-color: #f3f2f2;
+}
+
+.container ul.slds-has-dividers_around-space li {
+    cursor: pointer;
+    padding: 5px;
+}
+
+.container ul.slds-has-dividers_around-space li:hover {
+    background-color: #e1dfdf;
+}
+
+.container .get-directions-btn {
+    margin-top: 20px;
+}
+
+.directions-data p {
+    font-weight: bold;
+    margin-bottom: 5px;
+}

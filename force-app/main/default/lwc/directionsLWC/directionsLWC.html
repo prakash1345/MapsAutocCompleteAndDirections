@@ -1,0 +1,34 @@
+<template>
+    <div class="container">
+        <lightning-input type="text" label="Origin" value={origin} onchange={handleOriginChange} onkeyup={handleOriginKeyup}></lightning-input>
+        <template if:true={originSuggestions.length}>
+            <ul class="slds-has-dividers_around-space">
+                <template for:each={originSuggestions} for:item="suggestion">
+                    <li key={suggestion} class="slds-item" onclick={handleOriginSuggestionClick}>{suggestion}</li>
+                </template>
+            </ul>
+        </template>
+        <lightning-input type="text" label="Destination" value={destination} onchange={handleDestinationChange} onkeyup={handleDestinationKeyup}></lightning-input>
+        <template if:true={destinationSuggestions.length}>
+            <ul class="slds-has-dividers_around-space">
+                <template for:each={destinationSuggestions} for:item="suggestion">
+                    <li key={suggestion} class="slds-item" onclick={handleDestinationSuggestionClick}>{suggestion}</li>
+                </template>
+            </ul>
+        </template>
+        <lightning-combobox 
+        name="mode" 
+        label="Mode" 
+        value={mode} 
+        placeholder="Select Mode" 
+        options={modeOptions} 
+        onchange={handleModeChange}>
+    </lightning-combobox>
+        <lightning-button variant="brand" label="Get Directions" onclick={handleClick} class="get-directions-btn"></lightning-button>
+    </div>
+    <div class="directions-data" if:true={directionsData}>
+        <p>Distance: {directionsData.distance}</p>
+        <p>Time: {directionsData.time}</p>
+        <p>Cost:$ {directionsData.cost}</p>
+    </div>
+</template>
