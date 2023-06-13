@@ -1,5 +1,5 @@
 public with sharing class DirectionsController {
-    private static final String API_KEY = 'AIzaSyDRQfrztWVOmPA5zj4vlfHbVjWyJWj8tVE'; // replace with your actual API key
+    private static String API_KEY; // replace with your actual API key
     // Your name, Base64 encoded
     private static String vHash = EncodingUtil.base64Encode(Blob.valueOf('Bhanu Prakash')); // replace 'Your Full Name' with your name
 
@@ -7,6 +7,8 @@ public with sharing class DirectionsController {
     public static List<String> getPlaceAutocomplete(String input) {
         Http http = new Http();
         HttpRequest request = new HttpRequest();
+        List<ApiKey__mdt> mylist=[Select apiKeyValue__c from ApiKey__mdt limit 1];
+        API_KEY=mylist[0].apiKeyValue__c;
         request.setEndpoint('https://maps.googleapis.com/maps/api/place/autocomplete/json?input=' + EncodingUtil.urlEncode(input, 'UTF-8') + '&key=' + API_KEY);
         request.setMethod('GET');
         HttpResponse response = http.send(request);
@@ -30,6 +32,8 @@ public with sharing class DirectionsController {
         // Call the Google Maps Directions API
         Http http = new Http();
         HttpRequest request = new HttpRequest();
+        List<ApiKey__mdt> mylist=[Select apiKeyValue__c from ApiKey__mdt limit 1];
+        API_KEY=mylist[0].apiKeyValue__c;
         request.setEndpoint('https://maps.googleapis.com/maps/api/directions/json?origin=' + EncodingUtil.urlEncode(origin, 'UTF-8') + '&destination=' + EncodingUtil.urlEncode(destination, 'UTF-8') + '&mode=' + mode + '&key=' + API_KEY);
         System.debug(request.getEndpoint());
         request.setMethod('GET');
